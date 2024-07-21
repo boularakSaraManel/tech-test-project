@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class Folder extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'path', 'type', 'size', 'user_id', 'folder_id'];
+    protected $fillable = ['name', 'user_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function folder()
+    public function files()
     {
-        return $this->belongsTo(Folder::class);
+        return $this->hasMany(File::class);
     }
 }
+
